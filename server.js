@@ -9,8 +9,6 @@ const logger = require('morgan')
 const connectDB = require('./config/database')
 const mainRoutes = require('./routes/main')
 const todoRoutes = require('./routes/todos')
-const hitlistRoutes = require('./routes/hitlist')
-const PORT = process.env.PORT || 8080
 
 require('dotenv').config({path: './config/.env'})
 
@@ -42,10 +40,7 @@ app.use(flash())
   
 app.use('/', mainRoutes)
 app.use('/todos', todoRoutes)
-//added the hitlist route call
-app.use('/hitlist', hitlistRoutes)
  
 app.listen(process.env.PORT, ()=>{
-    console.log(`server running on http://localhost:${PORT}`)
+    console.log('Server is running, you better catch it!')
 })    
-
