@@ -7,8 +7,7 @@ module.exports = {
         try{
             const entryItems = await Hitlist.find({userId:req.user.id})
             //const entryTotal = await Hitlist.countDocuments()
-            res.render('hitlist.ejs', {entries: entryItems, numEntries: entryItems.length,  user: req.user})
-            //res.status(200).json(entryItems)
+            res.render('hitlist.ejs', {entries: entryItems, numEntries: entryItems.length, moment, user: req.user})
         }catch(err){
             console.log(err)
         }
@@ -27,7 +26,6 @@ module.exports = {
                 source: req.body.source,
                 userId: req.user.id
             })
-            //res.status(200).json(entry)
             res.redirect('/hitlist')
         }catch(err){
             console.log(err)
@@ -37,16 +35,13 @@ module.exports = {
         try {
             const singleEntry = await Hitlist.findById(req.params.id)
             res.render('editForm', {entry: singleEntry, moment})
-            //res.status(200).json(singleEntry)
         } catch (err) {
             console.error(err)
         }
     },
     putEntry: async (req, res)=>{
         try{
-            //await Hitlist.findOneAndUpdate({_id:req.body.todoIdFromJSFile},req.body)
             const updatedEntry = await Hitlist.findByIdAndUpdate(req.params.id, req.body,{new: true})
-            //res.status(200).json(updatedEntry)
             res.redirect('/hitlist')
         }catch(err){
             console.log(err)
@@ -55,9 +50,7 @@ module.exports = {
     deleteEntry: async (req, res)=>{
         console.log(req.body.todoIdFromJSFile)
         try{
-            //await Hitlist.findOneAndDelete({_id:req.body.todoIdFromJSFile})
             await Hitlist.findByIdAndDelete(req.params.id)
-            //res.json('Deleted')
             res.redirect('/hitlist')
         }catch(err){
             console.log(err)

@@ -8,7 +8,6 @@ const flash = require('express-flash')
 const logger = require('morgan')
 const connectDB = require('./config/database')
 const mainRoutes = require('./routes/main')
-const todoRoutes = require('./routes/todos')
 const hitlistRoutes = require('./routes/hitlist')
 const PORT = process.env.PORT || 8080
 const methodOverride = require('method-override')
@@ -26,6 +25,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(logger('dev'))
 
+//method override middleware, to send put and delete http methods from html forms
 app.use(methodOverride( (req, res) => {
   if (req.body && typeof req.body === 'object' && '_method' in req.body) {
     let method = req.body._method
@@ -51,7 +51,6 @@ app.use(passport.session())
 app.use(flash())
   
 app.use('/', mainRoutes)
-//app.use('/todos', todoRoutes)
 //added the hitlist route call
 app.use('/hitlist', hitlistRoutes)
  
