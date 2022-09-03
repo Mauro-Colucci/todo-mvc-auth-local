@@ -1,5 +1,7 @@
 const mongoose = require('mongoose')
 
+//mvp schema for first section of the hitlist talble.
+//possibly change source to sourceUrl?
 
 const HitlistSchema = new mongoose.Schema({
     companyName:{
