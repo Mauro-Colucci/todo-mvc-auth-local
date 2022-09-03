@@ -1,4 +1,5 @@
 const Hitlist = require('../models/Hitlist')
+const moment = require('moment')
 
 module.exports = {
     getEntries: async (req,res)=>{
@@ -35,7 +36,7 @@ module.exports = {
     getEntryToEdit: async (req, res)=>{
         try {
             const singleEntry = await Hitlist.findById(req.params.id)
-            res.render('editForm', {entry: singleEntry})
+            res.render('editForm', {entry: singleEntry, moment})
             //res.status(200).json(singleEntry)
         } catch (err) {
             console.error(err)
