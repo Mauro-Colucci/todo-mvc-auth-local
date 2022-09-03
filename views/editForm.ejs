@@ -15,33 +15,41 @@
 </head>
 <body>
   <div class="container d-flex p-2 justify-content-center">
-    <form action="/hitlist/addEntry" method="POST">
+    <form action="/hitlist/updateEntry/<%= entry._id %>" method="post">
+        <input type="hidden" name="_method" value="PUT">
         <div class="form-group">
           <label for="companyName">Company Name</label>
-          <input type="text" name="companyName" class="form-control" id="" aria-describedby="Enter Company Name" placeholder="Company Name">
+          <input type="text" name="companyName" class="form-control" id="" aria-describedby="Enter Company Name" value="<%= entry.companyName %>">
         </div>
         <div class="form-group">
           <label for="dateAdded">Date Added</label>
-          <input type="date" name="dateAdded" class="form-control" id="" aria-describedby="Date">
+          <input type="date" name="dateAdded" class="form-control" id="" aria-describedby="Date" value="<%= entry.dateAdded %>">
         </div>
         <div class="form-group">
           <label for="url">URL</label>
-          <input type="text" name="url" class="form-control" id="" aria-describedby="Enter URL" placeholder="Enter URL">
+          <input type="text" name="url" class="form-control" id="" aria-describedby="Enter URL" value="<%= entry.url %>">
         </div>
         <div class="form-group">
           <label for="rolePosition">Role/Position</label>
-          <input type="text" name="rolePosition" class="form-control" id="" aria-describedby="Role/Position" placeholder="Enter Role/Position">
+          <input type="text" name="rolePosition" class="form-control" id="" aria-describedby="Role/Position" value="<%= entry.rolePosition %>">
         </div>
         <div class="form-group">
           <label for="typeOfPosition">Type of position</label>
-          <input type="text" name="typeOfPosition" class="form-control" id="" aria-describedby="Company Name" placeholder="Enter Type of position">
+          <input type="text" name="typeOfPosition" class="form-control" id="" aria-describedby="Company Name" value="<%= entry.typeOfPosition %>">
         </div>
         <div class="form-group">
           <label for="source">Source</label>
-          <input type="text" name="source" class="form-control" id="" aria-describedby="Company Name" placeholder="Enter Source">
+          <input type="text" name="source" class="form-control" id="" aria-describedby="Company Name" value="<%= entry.source %>">
         </div>
         <button type="submit" class="btn btn-outline-primary mt-2">Submit</button>
+        
       </form>
+
+      <form action="/hitlist/deleteEntry/<%= entry._id %>" method="post">
+        <input type="hidden" name="_method" value="DELETE">
+        <button type="submit" class="btn btn-outline-danger mt-2">Delete</button>
+      </form>
+ 
   </div>
 
   <!-- JavaScript Bundle with Popper -->
