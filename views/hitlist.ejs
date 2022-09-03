@@ -7,60 +7,59 @@
     <title>Document</title>
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/style.css">
+    <script defer src="https://kit.fontawesome.com/80331bb8c5.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <h1>Company Followup List</h1>
-    <ul>
-    <% todos.forEach( el => { %>
-        <!--<li class='todoItem' data-id='<%=el._id%>'>
-            <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %></span>
-            <span class='del'> Delete </span>
-        </li>-->
-        <div class="course">
-            <div class="course-preview">
+    <a href="/hitlist/addEntry">add entry</a>
+    <div class="list-container">
+    <% entries.forEach( entry => { %>
+        <div class="company-card">
+            <div class="company-preview">
                 <h6>Company</h6>
-                <h2>comapany_placeholder</h2>
-                <a href='#'>View Company Website<i class="fas fa-chevron-right"></i></a>
+                <h2><%= entry.companyName %></h2>
+                <a href="<%= entry.url %>">Company Website <i class="fa-solid fa-chevron-right"></i></a>
             </div>
-            <div class="course-info">
-                <div class="progress-container">
+            <div class="company-info">
+                <!-- <div class="progress-container">
                     <div class="progress"></div>
                     <span class="progress-text">
-                        6/9 Challenges
+                        2/3 connections
                     </span>
-                </div>
-                <h6>Chapter 4</h6>
-                <h2>Callbacks & Closures</h2>
-                <button class="btn">Continue</button>
+                </div> -->
+                <h6>Position type: <%= entry.typeOfPosition %></h6>
+                <h2><%= entry.rolePosition %></h2>
+                <a href="/hitlist/updateEntry/<%= entry._id %> " class="btn">Edit</a>
             </div>
         </div>
     <% }) %>    
-    </ul>
+    </div>
     
     <!-- SOCIAL PANEL HTML -->
     <div class="social-panel-container">
         <div class="social-panel">
-            <button class="close-btn"><i class="fas fa-times"></i></button>
-            <h4>Get in touch on</h4>
+           
+            <button class="close-btn"><i class="fa-solid fa-circle-xmark"></i></button>
+            <h4>Get in touch on...</h4>
             <ul>
                 <li>
                     <a href="#" target="_blank">
-                        <i class="fab fa-twitter"></i>
+                        <i class="fa-brands fa-twitter"></i>
                     </a>
                 </li>
                 <li>
                     <a href="#" target="_blank">
-                        <i class="fab fa-linkedin"></i>
+                        <i class="fa-brands fa-linkedin"></i>
                     </a>
                 </li>
                 <li>
                     <a href="#" target="_blank">
-                        <i class="fab fa-facebook"></i>
+                        <i class="fa-brands fa-facebook"></i>
                     </a>
                 </li>
                 <li>
                     <a href="#" target="_blank">
-                        <i class="fab fa-instagram"></i>
+                        <i class="fa-brands fa-instagram"></i>
                     </a>
                 </li>
             </ul>
@@ -71,14 +70,8 @@
     </button>
     
     <div class="floating-text">
-        <h2><%= user.userName %> has <%= left %> things left to do.</h2>
+        <h2><%= user.userName %> has <%= numEntries %> companies listed</h2>
     </div>
-    
-
-    <form action="/todos/createTodo" method='POST'>
-        <input type="text" placeholder="Enter Todo Item" name='todoItem'>
-        <input type="submit">
-    </form>
 
     <a href="/logout">Logout</a>
 

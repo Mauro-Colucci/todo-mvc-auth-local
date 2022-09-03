@@ -21,8 +21,8 @@ post http://localhost:8080/hitlist/addEntry
 content-Type: application/json
 
 {
-    "companyName": "test company 2",
-    "url": "req.body.url",
+    "companyName": "new company test",
+    "url": "www.github.com",
     "rolePosition":" req.body.rolePosition",
     "typeOfPosition": "req.body.typeOfPosition",
     "source": "req.body.source"
@@ -34,7 +34,7 @@ put http://localhost:8080/hitlist/updateEntry/6312222445ea921914e0e15d
 content-Type: application/json
 
 {
-    "companyName": "test1"
+    "companyName": "test1 saturday"
 }
 
 ###
@@ -43,4 +43,8 @@ content-Type: application/json
 
 ###
 get http://localhost:8080/hitlist
+content-Type: application/json
+
+###
+get http://localhost:8080/hitlist/updateEntry/631392e01f50c24f141dff5a
 content-Type: application/json
