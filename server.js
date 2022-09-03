@@ -45,7 +45,7 @@ app.use('/todos', todoRoutes)
 //added the hitlist route call
 app.use('/hitlist', hitlistRoutes)
  
-app.listen(process.env.PORT, ()=>{
+app.listen(PORT, ()=>{
     console.log(`server running on http://localhost:${PORT}`)
 })    
 
