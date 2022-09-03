@@ -3,13 +3,13 @@ const router = express.Router()
 const hitlistController = require('../controllers/hitlist') 
 const { ensureAuth, ensureGuest } = require('../middleware/auth')
 
-router.get('/', ensureAuth, hitlistController.getTodos)
+router.get('/', ensureAuth, hitlistController.getEntries)
 
-router.post('/createTodo', hitlistController.createTodo)
+router.post('/addEntry', hitlistController.postEntry)
 
-router.put('/markComplete', hitlistController.markComplete)
+router.put('/updateEntry/:id', hitlistController.putEntry)
 
-router.delete('/deleteTodo', hitlistController.deleteTodo)
+router.delete('/deleteEntry/:id', hitlistController.deleteEntry)
 
 
 

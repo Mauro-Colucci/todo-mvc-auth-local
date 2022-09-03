@@ -8,7 +8,7 @@ const HitlistSchema = new mongoose.Schema({
     },
     dateAdded: {
         type: Date,
-        required: true
+        
     },
     url:{
         type: String,
