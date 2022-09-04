@@ -33,10 +33,6 @@
                 <span><%= entry.source %> </span>
                 <span><%= moment(entry.dateAdded).format('MM/DD/YYYY') %> </span>
                 <a href="/hitlist/updateEntry/<%= entry._id %> " class="btn">Edit</a>
-                <form action="/hitlist/deleteEntry/<%= entry._id %>" method="post">
-                    <input type="hidden" name="_method" value="DELETE">
-                    <button type="submit" class="delete-btn">&times;</button>
-                </form>
             </div>
         </div>
     <% }) %>    
