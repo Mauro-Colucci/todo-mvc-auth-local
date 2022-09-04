@@ -1,4 +1,4 @@
-const Hitlist = require('../models/Hitlist')
+const Hitlist = require('../models/hitlist')
 const moment = require('moment')
 
 module.exports = {
