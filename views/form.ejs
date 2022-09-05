@@ -1,49 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/style.css">
+<%- include('./layout/header.ejs') -%> 
 
 
-    <!-- CSS only -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+  <div class="vertical">
 
-</head>
-<body>
-    <form>
-        <div class="form-group">
-          <label for="">Company Name</label>
-          <input type="email" name="companyName" class="form-control" id="" aria-describedby="Enter Company Name" placeholder="Company Name">
-        </div>
-        <div class="form-group">
-            <label for="">Date Added</label>
-            <input type="date" name="dateAdded" class="form-control" id="" aria-describedby="Date">
-          </div>
-          <div class="form-group">
-            <label for="">URL</label>
-            <input type="url" name="url" class="form-control" id="" aria-describedby="Enter URL" placeholder="Enter URL">
-          </div>
-          <div class="form-group">
-            <label for="">Role/Position</label>
-            <input type="text" name="rolePosition" class="form-control" id="" aria-describedby="Role/Position" placeholder="Enter Role/Position">
-          </div>
-          <div class="form-group">
-            <label for="">Type of position</label>
-            <input type="text" name="typeOfPosition" class="form-control" id="" aria-describedby="Company Name" placeholder="Enter Type of position">
-          </div>
-          <div class="form-group">
-            <label for="">Source</label>
-            <input type="text" name="source" class="form-control" id="" aria-describedby="Company Name" placeholder="Enter Source">
-          </div>
-        <button type="button" class="btn btn-outline-primary">Submit</button>
+    <h2>Add your hitlist entry</h2>
+    <p class="lead">So many people to <span class="crossout">stalk</span> network with!</p>
 
+    <form class="vertical" action="/hitlist/addEntry" method="POST">
 
-       <!-- JavaScript Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+      <label for="companyName">Company Name</label>
+      <input type="text" name="companyName" placeholder="Company Name">
 
-</body>
-</html>
+      <label for="dateAdded">Date Added</label>
+      <input type="date" name="dateAdded">
+
+      <label for="url">URL</label>
+      <input type="text" name="url" placeholder="Enter URL">
+
+      <label for="rolePosition">Role/Position</label>
+      <input type="text" name="rolePosition" placeholder="Enter Role/Position">
+
+      <label for="typeOfPosition">Type of position</label>
+      <input type="text" name="typeOfPosition" placeholder="Enter Type of position">
+
+      <label for="source">Source</label>
+      <input type="text" name="source" placeholder="Enter Source">
+
+      <button type="submit" class="btn">Submit</button>
+
+      <a href="/" class="btn cancel">Cancel</a>
+    </form>
+  </div>
+
+  <%- include('./layout/footer.ejs') -%> 

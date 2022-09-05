@@ -1,55 +1,59 @@
-const hitlist = require('../models/hitlist')
+const Hitlist = require('../models/hitlist')
+const moment = require('moment')
 
 module.exports = {
-    getTodos: async (req,res)=>{
-        console.log(req.user)
-        try{
-            const todoItems = await Todo.find({userId:req.user.id})
-            const itemsLeft = await Todo.countDocuments({userId:req.user.id,completed: false})
-            res.render('todos.ejs', {todos: todoItems, left: itemsLeft, user: req.user})
-        }catch(err){
-            console.log(err)
-        }
-    },
-    createTodo: async (req, res)=>{
-        try{
-            await Todo.create({todo: req.body.todoItem, completed: false, userId: req.user.id})
-            console.log('Todo has been added!')
-            res.redirect('/todos')
-        }catch(err){
-            console.log(err)
-        }
-    },
-    markComplete: async (req, res)=>{
-        try{
-            await Todo.findOneAndUpdate({_id:req.body.todoIdFromJSFile},{
-                completed: true
-            })
-            console.log('Marked Complete')
-            res.json('Marked Complete')
-        }catch(err){
-            console.log(err)
-        }
-    },
-    markIncomplete: async (req, res)=>{
-        try{
-            await Todo.findOneAndUpdate({_id:req.body.todoIdFromJSFile},{
-                completed: false
-            })
-            console.log('Marked Incomplete')
-            res.json('Marked Incomplete')
-        }catch(err){
-            console.log(err)
-        }
-    },
-    deleteTodo: async (req, res)=>{
-        console.log(req.body.todoIdFromJSFile)
-        try{
-            await Todo.findOneAndDelete({_id:req.body.todoIdFromJSFile})
-            console.log('Deleted Todo')
-            res.json('Deleted It')
-        }catch(err){
-            console.log(err)
-        }
+  getEntries: async (req,res)=>{
+    console.log(req.user)
+    try{
+      const entryItems = await Hitlist.find({userId:req.user.id})
+      //const entryTotal = await Hitlist.countDocuments()
+      res.render('hitlist.ejs', {entries: entryItems, numEntries: entryItems.length, moment, user: req.user, title: "Hitlist"})
+    }catch(err){
+      console.log(err)
     }
+  },
+  getEntry: (req, res)=>{
+    console.log(req.user);
+    res.render('form.ejs', {title: "Add resources"})
+  },
+  postEntry: async (req, res)=>{
+    try{
+      const entry = await Hitlist.create({
+        companyName: req.body.companyName,
+        dateAdded: req.body.dateAdded,
+        url: req.body.url,
+        rolePosition: req.body.rolePosition,
+        typeOfPosition: req.body.typeOfPosition,
+        source: req.body.source,
+        userId: req.user.id
+      })
+      res.redirect('/hitlist')
+    }catch(err){
+      console.log(err)
+    }
+  },
+  getEntryToEdit: async (req, res)=>{
+    try {
+      const singleEntry = await Hitlist.findById(req.params.id)
+      res.render('editForm', {entry: singleEntry, moment, title: "Update your Hitlist"})
+    } catch (err) {
+      console.error(err)
+    }
+  },
+  putEntry: async (req, res)=>{
+    try{
+      const updatedEntry = await Hitlist.findByIdAndUpdate(req.params.id, req.body,{new: true})
+      res.redirect('/hitlist')
+    }catch(err){
+      console.log(err)
+    }
+  },
+  deleteEntry: async (req, res)=>{
+    try{
+      await Hitlist.findByIdAndDelete(req.params.id)
+      res.redirect('/hitlist')
+    }catch(err){
+      console.log(err)
+    }
+  }
 }    
